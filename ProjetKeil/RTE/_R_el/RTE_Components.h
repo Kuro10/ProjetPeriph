@@ -4,7 +4,7 @@
  *      *** Do not modify ! ***
  *
  * Project: 'TP' 
- * Target:  'Simu' 
+ * Target:  'Réel' 
  */
 
 #ifndef RTE_COMPONENTS_H
