@@ -21,11 +21,11 @@ void Ma_Fonction_IT ( void )
 		GPIOA->ODR &= ~(0x1<<5);
 	}
 	*/
-	if( !ok && GPIOC->IDR & (1 << 10)){
+	if( !ok && GPIOB->IDR & (1 << 5)){
 		ok=1;
 		TIM2->CCR1 = 144;
 	}
-	else if (ok && !(GPIOC->IDR & (1 << 10))){
+	else if (ok && !(GPIOB->IDR & (1 << 5))){
 		ok=0;
 		TIM2->CCR1 = 0 ;
 	}
@@ -107,10 +107,10 @@ int main (void)
 	//Pour l'instant, fixons la duree de l'impulsion a 144 (10%)
 	TIM2->CCR1 = 144;
 	
-	//Configurer le button PC.10 en entree 
-	RCC->APB2ENR |= RCC_APB2ENR_IOPCEN;
-	GPIOC->CRH &= ~(0xF<<(4*2));
-	GPIOC->CRH |= (0x4<<(4*2));
+	//Configurer le button PB.5 en entree 
+	RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
+	GPIOB->CRL &= ~(0xF<<(4*5));
+	GPIOB->CRL |= (0x4<<(4*5));
 	
 	//Configurer la LED PA.0 en sortie et en mode alternate function
 	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
