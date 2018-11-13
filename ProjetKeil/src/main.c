@@ -19,7 +19,7 @@ int main (void)
 	
 	
 	while(1) {
-	
+		
 		// Bouton levé
 		if(etat_levier == FERME && GPIO_Read(GPIOB, 5)){
 			// On ouvre le capot

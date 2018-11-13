@@ -382,14 +382,19 @@
           <GroupName>source</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>GPIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\GPIO.c</FilePath>
+            </File>
+            <File>
+              <FileName>CapteurInfra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\CapteurInfra.c</FilePath>
+            </File>
+            <File>
+              <FileName>main_capteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main_capteur.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -777,14 +782,19 @@
           <GroupName>source</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>GPIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\GPIO.c</FilePath>
+            </File>
+            <File>
+              <FileName>CapteurInfra.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\CapteurInfra.c</FilePath>
+            </File>
+            <File>
+              <FileName>main_capteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main_capteur.c</FilePath>
             </File>
           </Files>
         </Group>
