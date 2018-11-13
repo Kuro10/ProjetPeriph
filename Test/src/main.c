@@ -5,6 +5,7 @@
 int LED; 
 int ok=0;
 /* Fichier de la couche "application" */
+
 void Ma_Fonction_IT ( void )
 {
 /* Le code à exécuter pendant l’interruption */
@@ -21,14 +22,18 @@ void Ma_Fonction_IT ( void )
 		GPIOA->ODR &= ~(0x1<<5);
 	}
 	*/
+	
 	if( !ok && GPIOB->IDR & (1 << 5)){
 		ok=1;
 		TIM2->CCR1 = 144;
+		TIM2->CCR2 = 144;
 	}
 	else if (ok && !(GPIOB->IDR & (1 << 5))){
 		ok=0;
-		TIM2->CCR1 = 0 ;
+		TIM2->CCR1 = 72;
+		TIM2->CCR2 = 72;
 	}
+	
 	TIM2->SR &= ~0x1;
 }
 
@@ -104,24 +109,38 @@ int main (void)
 	//sur le CH1 (broche PA.0)
 	TIM2->CCER |= TIM_CCER_CC1E;
 	
+	TIM2->CCMR1 &= ~TIM_CCMR1_OC2M_0;
+	TIM2->CCMR1 |= TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2M_2;
+	TIM2->CCMR1 |= TIM_CCMR1_OC2PE;
+	//sur le CH2 (broche PA.1)
+	TIM2->CCER |= TIM_CCER_CC2E;
+	
 	//Pour l'instant, fixons la duree de l'impulsion a 144 (10%)
 	TIM2->CCR1 = 144;
+	TIM2->CCR2 = 144;
 	
 	//Configurer le button PB.5 en entree 
 	RCC->APB2ENR |= RCC_APB2ENR_IOPBEN;
 	GPIOB->CRL &= ~(0xF<<(4*5));
 	GPIOB->CRL |= (0x4<<(4*5));
 	
-	//Configurer la LED PA.0 en sortie et en mode alternate function
+	//Configurer le capot PA.0 en sortie et en mode alternate function
 	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
 	//alternate push-pull
 	GPIOA->CRL &= ~(0xF<<(4*0));
 	GPIOA->CRL |= (0xB<<(4*0));
 	
+	//Configurer le bras PA.1 en sortie et en mode alternate function
+	RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
+	//alternate push-pull
+	GPIOA->CRL &= ~(0xF<<(4*1));
+	GPIOA->CRL |= (0xB<<(4*1));
+	
   // boucle de traitement
 		while(1)
     {  
 
+			
     }
 
 }
