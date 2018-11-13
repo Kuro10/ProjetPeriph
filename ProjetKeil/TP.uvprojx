@@ -382,19 +382,24 @@
           <GroupName>source</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>GPIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\GPIO.c</FilePath>
             </File>
             <File>
-              <FileName>MoteurCapot.c</FileName>
+              <FileName>CapteurInfra.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\MoteurCapot.c</FilePath>
+              <FilePath>.\src\CapteurInfra.c</FilePath>
+            </File>
+            <File>
+              <FileName>main_capteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main_capteur.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\timer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -782,19 +787,24 @@
           <GroupName>source</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-            <File>
               <FileName>GPIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\GPIO.c</FilePath>
             </File>
             <File>
-              <FileName>MoteurCapot.c</FileName>
+              <FileName>CapteurInfra.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\MoteurCapot.c</FilePath>
+              <FilePath>.\src\CapteurInfra.c</FilePath>
+            </File>
+            <File>
+              <FileName>main_capteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main_capteur.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\timer.c</FilePath>
             </File>
           </Files>
         </Group>
