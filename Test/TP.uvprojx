@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>TP_IT</OutputName>
+          <OutputName>TP_servo</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -133,12 +133,12 @@
             <UseExternalTool>0</UseExternalTool>
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
-            <Capability>0</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <Capability>1</Capability>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -382,19 +382,14 @@
           <GroupName>source</GroupName>
           <Files>
             <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main.c</FilePath>
+            </File>
+            <File>
               <FileName>GPIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\GPIO.c</FilePath>
-            </File>
-            <File>
-              <FileName>CapteurInfra.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\CapteurInfra.c</FilePath>
-            </File>
-            <File>
-              <FileName>main_capteur.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main_capteur.c</FilePath>
             </File>
             <File>
               <FileName>MoteurCapot.c</FileName>
@@ -787,19 +782,14 @@
           <GroupName>source</GroupName>
           <Files>
             <File>
+              <FileName>main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main.c</FilePath>
+            </File>
+            <File>
               <FileName>GPIO.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\GPIO.c</FilePath>
-            </File>
-            <File>
-              <FileName>CapteurInfra.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\CapteurInfra.c</FilePath>
-            </File>
-            <File>
-              <FileName>main_capteur.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main_capteur.c</FilePath>
             </File>
             <File>
               <FileName>MoteurCapot.c</FileName>
