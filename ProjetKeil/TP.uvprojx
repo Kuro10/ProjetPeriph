@@ -397,9 +397,9 @@
               <FilePath>.\src\main_capteur.c</FilePath>
             </File>
             <File>
-              <FileName>MoteurCapot.c</FileName>
+              <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\MoteurCapot.c</FilePath>
+              <FilePath>.\src\timer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -802,9 +802,9 @@
               <FilePath>.\src\main_capteur.c</FilePath>
             </File>
             <File>
-              <FileName>MoteurCapot.c</FileName>
+              <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\MoteurCapot.c</FilePath>
+              <FilePath>.\src\timer.c</FilePath>
             </File>
           </Files>
         </Group>
