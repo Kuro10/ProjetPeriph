@@ -396,6 +396,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\MoteurCapot.c</FilePath>
             </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\timer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -795,6 +800,11 @@
               <FileName>MoteurCapot.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\MoteurCapot.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\timer.c</FilePath>
             </File>
           </Files>
         </Group>
