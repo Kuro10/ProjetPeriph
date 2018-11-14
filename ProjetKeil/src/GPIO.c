@@ -1,7 +1,6 @@
 #include "stm32f10x.h"
 #include "GPIO.h"
 
-
 // Configuration d'une PIN
 void GPIO_Init(GPIO_Struct_TypeDef * GPIOStructPtr){
 	
