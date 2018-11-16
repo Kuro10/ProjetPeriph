@@ -18,6 +18,8 @@ int main (void)
 	GPIO_Init(&levier);
 	
 	
+	
+	
 	while(1) {
 		
 		// Bouton levé

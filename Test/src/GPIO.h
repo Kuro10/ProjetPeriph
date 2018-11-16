@@ -9,6 +9,7 @@
 #define In_Analog 0
 #define Out_Ppull 1 // 10 MHz
 #define Out_OD 5
+#define Alt_Out_Ppull 0xB
 
 #define PIN_CRL_MAX 8
 

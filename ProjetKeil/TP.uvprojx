@@ -387,19 +387,19 @@
               <FilePath>.\src\GPIO.c</FilePath>
             </File>
             <File>
-              <FileName>CapteurInfra.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\CapteurInfra.c</FilePath>
-            </File>
-            <File>
-              <FileName>main_capteur.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main_capteur.c</FilePath>
-            </File>
-            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>main_servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main_servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>Moteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Moteur.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -792,19 +792,19 @@
               <FilePath>.\src\GPIO.c</FilePath>
             </File>
             <File>
-              <FileName>CapteurInfra.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\CapteurInfra.c</FilePath>
-            </File>
-            <File>
-              <FileName>main_capteur.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main_capteur.c</FilePath>
-            </File>
-            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>main_servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main_servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>Moteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Moteur.c</FilePath>
             </File>
           </Files>
         </Group>
