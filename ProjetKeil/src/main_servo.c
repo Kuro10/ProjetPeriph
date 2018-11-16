@@ -1,3 +1,4 @@
+
 #include "stm32f10x.h" 
 #include "timer.h"
 #include "GPIO.h"
@@ -6,16 +7,11 @@
 
 int open=0;
 GPIO_Struct_TypeDef button;
-//GPIO_Struct_TypeDef capot;
-//GPIO_Struct_TypeDef bras;
-int i=0;
 
 /* Fichier de la couche "application" */
 void Ma_Fonction_IT ( void )
 {
 /* Le code à exécuter pendant l’interruption */
-
-	// A VERIFIER : CHOISIR DES VALEURS ADAPTEES POUR BIEN FONCTIONNER 
 	
 	// si le capot est ferme, et button = 0, ouvrir le capot, puis tourner le bras
 	if( !open && GPIO_Read(GPIOB,5) ){
@@ -58,18 +54,10 @@ int main (void)
 	
 	//Configurer le capot PA.0 en sortie et en mode alternate function
 	//alternate push-pull
-	//capot.GPIO = GPIOA;
-	//capot.GPIO_Pin = 0;
-	//capot.GPIO_Techno = Alt_Out_Ppull;
-	//GPIO_Init(&capot);
 	InitCapot();
 	
 	//Configurer le bras PA.1 en sortie et en mode alternate function
 	//alternate push-pull
-	//bras.GPIO = GPIOA;
-	//bras.GPIO_Pin = 1;
-	//bras.GPIO_Techno = Alt_Out_Ppull;
-	//GPIO_Init(&bras);
 	InitBras();
 	
 	//Activer l'horloge locale de TIM2
@@ -83,10 +71,8 @@ int main (void)
 	//configurer le canal CH1 d'un timer en mode PWM
 	//il faut affecter la valeur 0b110 au bits OC1M dans le registre CCMR1 du TIM
 	//sur le CH1 (broche PA.0)
-	//PWM_Init(TIM2,1);
 	ActiverCapot(TIM2,1);
 	//sur le CH2 (broche PA.1)
-	//PWM_Init(TIM2,2);
 	ActiverBras(TIM2,2);
 	
 	//Pour l'instant, fixons la duree de l'impulsion a 144 (10%)
