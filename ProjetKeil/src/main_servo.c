@@ -1,13 +1,13 @@
 #include "stm32f10x.h" 
 #include "timer.h"
 #include "GPIO.h"
-#include "Moteur.h"
-
+#include "MoteurBras.h"
+#include "MoteurCapot.h"
 
 int open=0;
 GPIO_Struct_TypeDef button;
-GPIO_Struct_TypeDef capot;
-GPIO_Struct_TypeDef bras;
+//GPIO_Struct_TypeDef capot;
+//GPIO_Struct_TypeDef bras;
 int i=0;
 
 /* Fichier de la couche "application" */
@@ -17,25 +17,17 @@ void Ma_Fonction_IT ( void )
 
 	// A VERIFIER : CHOISIR DES VALEURS ADAPTEES POUR BIEN FONCTIONNER 
 	
-	// si le capot est ferme, et button = 1, ouvrir le capot, puis tourner le bras
+	// si le capot est ferme, et button = 0, ouvrir le capot, puis tourner le bras
 	if( !open && GPIO_Read(GPIOB,5) ){
 		open=1;
-		//TIM2->CCR1 = 144;
-		//TIM2->CCR2 = 144;
-		PWM_Set_Valeur(TIM2,1,144);
-		i=0;
-		while(i<500000) i++;
-		PWM_Set_Valeur(TIM2,2,144);
+		OuvrirCapot(TIM2,1);
+		SortirBras(TIM2,2);
 	}
-	// si le capot est ouvrert, button -> 0, tourner bras, puis fermer le capot
+	// si le capot est ouvrert, button -> 1, tourner bras, puis fermer le capot
 	else if (open && !GPIO_Read(GPIOB,5)){
 		open=0;
-		//TIM2->CCR1 = 72;
-		//TIM2->CCR2 = 72;
-		PWM_Set_Valeur(TIM2,2,72);
-		i=0;
-		while (i<500000) i++;
-		PWM_Set_Valeur(TIM2,1,72);
+		FermerCapot(TIM2,1);
+		RentrerBras(TIM2,2);
 	}
 	
 	TIM2->SR &= ~0x1;
@@ -53,7 +45,6 @@ void Init_periph (void (* ptrFonction) (void)) {
 void TIM2_IRQHandler (void){
 	if (pFnc != 0)
 		(*pFnc) (); /* appel indirect de la fonction */
-	
 }
 
 int main (void)
@@ -67,17 +58,19 @@ int main (void)
 	
 	//Configurer le capot PA.0 en sortie et en mode alternate function
 	//alternate push-pull
-	capot.GPIO = GPIOA;
-	capot.GPIO_Pin = 0;
-	capot.GPIO_Techno = Alt_Out_Ppull;
-	GPIO_Init(&capot);
+	//capot.GPIO = GPIOA;
+	//capot.GPIO_Pin = 0;
+	//capot.GPIO_Techno = Alt_Out_Ppull;
+	//GPIO_Init(&capot);
+	InitCapot();
 	
 	//Configurer le bras PA.1 en sortie et en mode alternate function
 	//alternate push-pull
-	bras.GPIO = GPIOA;
-	bras.GPIO_Pin = 1;
-	bras.GPIO_Techno = Alt_Out_Ppull;
-	GPIO_Init(&bras);
+	//bras.GPIO = GPIOA;
+	//bras.GPIO_Pin = 1;
+	//bras.GPIO_Techno = Alt_Out_Ppull;
+	//GPIO_Init(&bras);
+	InitBras();
 	
 	//Activer l'horloge locale de TIM2
 	//Configurer TIM2 avec periode de 20ms
@@ -90,18 +83,19 @@ int main (void)
 	//configurer le canal CH1 d'un timer en mode PWM
 	//il faut affecter la valeur 0b110 au bits OC1M dans le registre CCMR1 du TIM
 	//sur le CH1 (broche PA.0)
-	PWM_Init(TIM2,1);
+	//PWM_Init(TIM2,1);
+	ActiverCapot(TIM2,1);
 	//sur le CH2 (broche PA.1)
-	PWM_Init(TIM2,2);
-	
+	//PWM_Init(TIM2,2);
+	ActiverBras(TIM2,2);
 	
 	//Pour l'instant, fixons la duree de l'impulsion a 144 (10%)
-	PWM_Set_Valeur(TIM2,1,144);
-	PWM_Set_Valeur(TIM2,2,144);
+	//PWM_Set_Valeur(TIM2,1,0);
+	//PWM_Set_Valeur(TIM2,2,0);
 	
 	
 	//Activer counter / Lancer le timer
-  DemarrerTimer(TIM2);
+  	DemarrerTimer(TIM2);
 	
 	// boucle de traitement
 		while(1)
