@@ -7,7 +7,7 @@ NB_OUVERTURES_AVANT_ATTENTE 3
 DUREE_ATTENTE 2
 
 
-- CAPTEUR_MODE1 : Ouverture petite et rapide
+- CAPTEUR_MODE1 : Ouverture rapide
 NB_OUVERTURES_AVANT_CAPTEUR_MODE1 3
 DUREE_OUVERTURE_CAPTEUR_MODE1 2
 
@@ -15,6 +15,7 @@ DUREE_OUVERTURE_CAPTEUR_MODE1 2
 NB_OUVERTURES_AVANT_CAPTEUR_MODE2 6
 DUREE_OUVERTURE_CAPTEUR_MODE2 4
 ```
+
 
 ## Bouton levier
 
@@ -32,13 +33,18 @@ DUREE_OUVERTURE_CAPTEUR_MODE2 4
     Valeurs possibles : entre 6 et 36 cm
     Ou cas spéciaux : -1 si < 6 cm, 1000 si > 36 cm
 
-- Si on passe sous le seuil "trop près" (< 6 cm), le comporement dépend du nombre d'ouvertures par le bouton :
+- Si on passe sous le seuil "trop près" (< 6 cm), le comportement dépend du nombre d'ouvertures par le bouton :
 
-  - Si nbOuvertures < NB_OUVERTURES_AVANT_CAPTEUR_MODE1 :
+  - Si nbOuvertures < NB_OUVERTURES_AVANT_CAPTEUR_MODE1 (--> en CAPTEUR_MODE0) :
     Ne rien faire
 
   - Si nbOuvertures > NB_OUVERTURES_AVANT_CAPTEUR_MODE1 et nbOuvertures < NB_OUVERTURES_AVANT_CAPTEUR_MODE2 (--> en CAPTEUR_MODE1) :
-    Ouverture petite et rapide de DUREE_OUVERTURE_CAPTEUR_MODE1 puis fermeture
+    Ouverture rapide de DUREE_OUVERTURE_CAPTEUR_MODE1 puis fermeture
 
   - Sinon (--> en CAPTEUR_MODE2) :
     Ouverture de DUREE_OUVERTURE_CAPTEUR_MODE2 puis fermeture
+
+
+## Chenilles
+
+> TODO
