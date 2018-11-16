@@ -17,14 +17,14 @@ void TIM3_IRQHandler(){
 	// Sort de l'interruption
 	TIM3->SR &= ~1; // Mise à 0 du UIF
 
-	debug = (debug == 10) ? 0 : debug + 1;
+	//debug = (debug == 10) ? 0 : debug + 1;
 	
 	// TODO : traiter la détection des éléments
-	// debug = getDistance();
+	debug = getDistance();
 	
 }
 
-int main (void)
+int main_capteur (void)
 {
 	
 	// Le timer 3 est utilisé pour traiter la fonction principale

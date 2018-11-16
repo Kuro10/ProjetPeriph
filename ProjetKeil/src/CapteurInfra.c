@@ -45,6 +45,7 @@ int getVoltage(void){
 }
 
 int getDistance(void){
+	
 	/*
 		>= 0xA80 --> trop près (moins de 6 cm)
 		<= 0x200 --> trop loin (plus de 36 cm)
@@ -62,9 +63,19 @@ int getDistance(void){
 		==> distance = 1/A = 2688*6/x
 	*/
 	
+	#define CAPTEUR_VAL_MAX 2688
+	#define CAPTEUR_VAL_MIN 512
+
 	int voltage = getVoltage();
 	
-	int distance = 2688*6/voltage;
+	// Traitement "trop près"
+	if(voltage >= CAPTEUR_VAL_MAX)
+		return DISTANCE_TROP_PRES;
 	
-	return distance;
+	// Traitement "trop loin"
+	else if(voltage <= CAPTEUR_VAL_MIN)
+		return DISTANCE_TROP_LOIN;
+	
+	// Distance entre 6 et 36 cm
+	return CAPTEUR_VAL_MAX*6/voltage;;
 }

@@ -15,7 +15,11 @@ int getVoltage(void);
  * Renvoie la distance au capteur
  * Elle est calculée en fonction du voltage retourné (expérimental !)
  * @return Valeur de la distance calculée
+ *		ou DISTANCE_TROP_PRES si distance < 6 cm
+ *		ou DISTANCE_TROP_LOIN si distance > 36 cm
  */
+#define DISTANCE_TROP_PRES -1
+#define DISTANCE_TROP_LOIN 1000
 int getDistance(void);
 
 #endif
