@@ -35,12 +35,6 @@ void ConfigInterrupt(TIM_TypeDef * timer){
 
 void InitialiserTimer(TIM_TypeDef * timer, int prescaler, int autoreload){
 	
-	// Configurer le prescaler p367
-	timer->PSC = prescaler;
-	
-	// Configurer l'autoreload p367
-	timer->ARR = autoreload;
-	
 	// Bit 0 TIMXEN: TIMX timer clock enable p116
 	switch((u32) timer){
 		case (u32) TIM2:
@@ -56,6 +50,12 @@ void InitialiserTimer(TIM_TypeDef * timer, int prescaler, int autoreload){
 		default:
 			break;
 	}
+	
+	// Configurer le prescaler p367
+	timer->PSC = prescaler;
+	
+	// Configurer l'autoreload p367
+	timer->ARR = autoreload;
 	
 }
 
