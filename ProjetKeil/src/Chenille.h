@@ -12,20 +12,34 @@ typedef struct {
 
 
 /**
+ *	Initialisation des chenilles
+ */
+void chenillesInit(void);
+
+
+/**
  * Configuration et initialisation d'une chenille
  */
 void chenilleInit(Chenille_Struct_Def * chenille);
+
+
 /**
  * Faire avancer une chenille
+ * @param :
+ * 'g' pour faire avancer la chenille gauche, 'd' pour la droite, 'b' pour les deux (both)
  */
-void chenilleAvancer(Chenille_Struct_Def * chenille);
+void chenilleAvancer(char cote);
+
+
 /**
  * Faire reculer une chenille
  */
-void chenilleReculer(Chenille_Struct_Def * chenille);
+void chenilleReculer(char cote);
+
+
 /**
  * Faire Arreter une chenille
  */
-void chenilleStop(Chenille_Struct_Def * chenille);
+void chenilleStop(char cote);
 
 #endif
