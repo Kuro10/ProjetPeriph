@@ -401,6 +401,26 @@
               <FileType>1</FileType>
               <FilePath>.\src\main_ia.c</FilePath>
             </File>
+            <File>
+              <FileName>Moteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Moteur.c</FilePath>
+            </File>
+            <File>
+              <FileName>MoteurBras.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\MoteurBras.c</FilePath>
+            </File>
+            <File>
+              <FileName>MoteurCapot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\MoteurCapot.c</FilePath>
+            </File>
+            <File>
+              <FileName>Chenille.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Chenille.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -805,6 +825,26 @@
               <FileName>main_ia.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\main_ia.c</FilePath>
+            </File>
+            <File>
+              <FileName>Moteur.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Moteur.c</FilePath>
+            </File>
+            <File>
+              <FileName>MoteurBras.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\MoteurBras.c</FilePath>
+            </File>
+            <File>
+              <FileName>MoteurCapot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\MoteurCapot.c</FilePath>
+            </File>
+            <File>
+              <FileName>Chenille.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\Chenille.c</FilePath>
             </File>
           </Files>
         </Group>

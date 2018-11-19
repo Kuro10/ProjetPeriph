@@ -11,7 +11,8 @@
 
 
 
-int debug = 0;
+int tempsChenille = 0;
+int chenilleActive = 0;
 
 // Variables IA
 enum etatsCapot {FERME, OUVERT, MIOUVERT};
@@ -20,10 +21,13 @@ enum etatsCapot {FERME, OUVERT, MIOUVERT};
 int countOuvertures = 0;
 enum etatsCapot etatCapot = FERME;
 
-#define NB_OUVERTURES_AVANT_CAPTEUR_MODE1 0
+#define NB_OUVERTURES_AVANT_CAPTEUR_MODE1 3
 #define DUREE_OUVERTURE_CAPTEUR_MODE1 1
 #define NB_OUVERTURES_AVANT_CAPTEUR_MODE2 6
 #define DUREE_OUVERTURE_CAPTEUR_MODE2 3
+
+#define DUREE_ANIM_CHENILLE_TOTAL 30
+#define DUREE_ANIM_CHENILLE 4
 
 #define GPIO_BOUTON GPIOB
 #define GPIO_BOUTON_PIN 5
@@ -47,6 +51,29 @@ void TIM3_IRQHandler(){
 		Intelligence artificielle
 	*/
 	
+	if(chenilleActive){
+		
+		chenilleReculer('b');
+		
+		if(tempsChenille % DUREE_ANIM_CHENILLE >= DUREE_ANIM_CHENILLE/2){
+			chenilleStop('d');
+			chenilleReculer('g');
+		}
+		else{
+			chenilleStop('g');
+			chenilleReculer('d');
+		}
+		
+	
+		if(tempsChenille >= DUREE_ANIM_CHENILLE_TOTAL){
+			chenilleStop('b');
+			chenilleActive = 0;
+		}
+		else
+			tempsChenille++;
+		
+		return;
+	}
 	
 	// Bouton
 	if(etatCapot != OUVERT && GPIO_Read(GPIO_BOUTON, GPIO_BOUTON_PIN)){
@@ -86,9 +113,12 @@ void TIM3_IRQHandler(){
 			}
 				
 			// CAPTEUR_MODE2 = Chenilles
-			if(countOuvertures >= NB_OUVERTURES_AVANT_CAPTEUR_MODE2){
+			if(!chenilleActive && countOuvertures >= NB_OUVERTURES_AVANT_CAPTEUR_MODE2){
 				
-				
+				/*chenilleAvancer('g');
+				chenilleReculer('d');*/
+				tempsChenille = 0;
+				chenilleActive = 1;
 				
 			}
 		
@@ -114,6 +144,7 @@ int main (void)
 	//TIM_TypeDef * timer3 = (TIM_TypeDef *) TIM3;
 	
 	// Initialisation de l'ADC (pour la lecture du capteur)
+
 	initADC();
 	
 	/****************************************************/
