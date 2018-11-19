@@ -4,13 +4,23 @@
 #include "timer.h"
 #include "MoteurBras.h"
 #include "MoteurCapot.h"
+#include "Chenille.h"
 
 #define NB_OUVERTURES_AVANT_ATTENTE 3
 #define DUREE_ATTENTE 2 // Secondes
 
-enum etatsCapot {FERME, OUVERT};
+
+
+int debug = 0;
+
+// Variables IA
+enum etatsCapot {FERME, OUVERT, MIOUVERT};
 //enum etatsCapteur {MODE0, MODE1, MODE2};
-#define NB_OUVERTURES_AVANT_CAPTEUR_MODE1 6
+
+int countOuvertures = 0;
+enum etatsCapot etatCapot = FERME;
+
+#define NB_OUVERTURES_AVANT_CAPTEUR_MODE1 0
 #define DUREE_OUVERTURE_CAPTEUR_MODE1 1
 #define NB_OUVERTURES_AVANT_CAPTEUR_MODE2 6
 #define DUREE_OUVERTURE_CAPTEUR_MODE2 3
@@ -18,26 +28,13 @@ enum etatsCapot {FERME, OUVERT};
 #define GPIO_BOUTON GPIOB
 #define GPIO_BOUTON_PIN 5
 
-/*int lireBouton(){
-	return 1;
-}
-
-void ouvrirCapot(){
-	
-}
-
-void fermerCapot(){
-	
-}*/
-
-int debug = 0;
-
-// Variables IA
-int countOuvertures = 0;
-enum etatsCapot etatCapot = FERME;
-
 
 void TIM3_IRQHandler(){
+	
+	int distance;
+	
+	// Sort de l'interruption
+	TIM3->SR &= ~1; // Mise à 0 du UIF
 	
 
 
@@ -49,10 +46,10 @@ void TIM3_IRQHandler(){
 	/*
 		Intelligence artificielle
 	*/
-	//int distance;
+	
 	
 	// Bouton
-	if(etatCapot == FERME && GPIO_Read(GPIO_BOUTON, GPIO_BOUTON_PIN)){
+	if(etatCapot != OUVERT && GPIO_Read(GPIO_BOUTON, GPIO_BOUTON_PIN)){
 		// On ouvre le capot
 		
 		OuvrirCapot(TIM2, 1);
@@ -69,44 +66,45 @@ void TIM3_IRQHandler(){
 		etatCapot = FERME;
 	}
 	
-	// Sort de l'interruption
-	TIM3->SR &= ~1; // Mise à 0 du UIF
-	
 	// Capteur
-	/*else if(etatCapot == FERME && !GPIO_Read(GPIO_BOUTON, GPIO_BOUTON_PIN)){
+	else if(etatCapot != OUVERT && !GPIO_Read(GPIO_BOUTON, GPIO_BOUTON_PIN)){
 		
 		distance = getDistance();
-		
+
 		// Si on est suffisamment proche
 		if(distance == DISTANCE_TROP_PRES){
 		
-			// CAPTEUR_MODE1
+			// CAPTEUR_MODE1 = Miouverture capot
 			if(countOuvertures >= NB_OUVERTURES_AVANT_CAPTEUR_MODE1
 				&& countOuvertures < NB_OUVERTURES_AVANT_CAPTEUR_MODE2){
 				
 				OuvrirCapot(TIM2, 1);
 				//sleep(DUREE_OUVERTURE_CAPTEUR_MODE1);
-				SortirBras(TIM2,2);
+				//SortirBras(TIM2,2);
+				etatCapot = MIOUVERT;
 					
 			}
 				
-			// CAPTEUR_MODE2
-			else if(countOuvertures >= NB_OUVERTURES_AVANT_CAPTEUR_MODE2){
+			// CAPTEUR_MODE2 = Chenilles
+			if(countOuvertures >= NB_OUVERTURES_AVANT_CAPTEUR_MODE2){
 				
-				OuvrirCapot();
-				//sleep(DUREE_OUVERTURE_CAPTEUR_MODE1);
-				fermerCapot();
 				
-				ouvrirCapot();
-				//sleep(DUREE_OUVERTURE_CAPTEUR_MODE1);
-				fermerCapot();
 				
 			}
 		
 		
+		}
 		
+		// Si on se recule
+		else if(etatCapot == MIOUVERT && distance >= 10){
+			
+			FermerCapot(TIM2, 1);
+			etatCapot = FERME;
+			
+		}
 		
-	}*/
+	}
+		
 }	
 
 int main (void)
@@ -145,8 +143,8 @@ int main (void)
 	DemarrerTimer(TIM3);
 	DemarrerTimer(TIM2);
 	
-	//SortirBras(TIM2, 2);
-		
+	// Initialisation de la chenille
+	chenillesInit();
 	
 	while(1) {}
 }

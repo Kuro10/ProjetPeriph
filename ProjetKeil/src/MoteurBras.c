@@ -21,5 +21,5 @@ void SortirBras(TIM_TypeDef * timer, int chanel){
 }
 
 void RentrerBras(TIM_TypeDef * timer, int chanel){
-	PWM_Set_Valeur(timer,chanel,34);
+	PWM_Set_Valeur(timer,chanel,33);
 }

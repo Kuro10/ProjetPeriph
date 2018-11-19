@@ -18,7 +18,7 @@ int getVoltage(void);
  *		ou DISTANCE_TROP_PRES si distance < 6 cm
  *		ou DISTANCE_TROP_LOIN si distance > 36 cm
  */
-#define DISTANCE_TROP_PRES -1
+#define DISTANCE_TROP_PRES 0xFFFF
 #define DISTANCE_TROP_LOIN 1000
 int getDistance(void);
 
