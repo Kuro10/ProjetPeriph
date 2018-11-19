@@ -36,10 +36,7 @@ int debug = 0;
 int countOuvertures = 0;
 enum etatsCapot etatCapot = FERME;
 
-/*
- * Interruption = fonction principale
- * On traite ici la détection du levier, du capteur, de l'IA etc.
- */
+
 void TIM3_IRQHandler(){
 	
 
@@ -110,13 +107,7 @@ void TIM3_IRQHandler(){
 		
 		
 	}*/
-		
-	
-	
-	
-	
-	
-}
+}	
 
 int main (void)
 {
@@ -130,9 +121,6 @@ int main (void)
 	/****************************************************/
 	// On configure le timer 3 pour éviter de tout traiter dans le while(1)
 
-	// Configuration de l'interruption
-	ConfigInterrupt(TIM3);
-	
 	/*
 		Initialisation du timer
 		Fréquence de lecture : 10 lectures/secondes
@@ -140,7 +128,13 @@ int main (void)
 		PSC = 7199 --> ARR = 1/10*72000000/7200 - 1 = 999
 	*/
 	InitialiserTimer(TIM3, 7199, 999);
+	
+	// Initialisation Timer bras
 	InitialiserTimer(TIM2, 999, 1439);
+	
+	// Configuration de l'interruption
+	ConfigInterrupt(TIM3);
+	
 	
 	InitBras();
 	ActiverBras(TIM2, 2);
