@@ -3,6 +3,25 @@
 #include "GPIO.h"
 
 
+Chenille_Struct_Def chenilleDroite;
+Chenille_Struct_Def chenilleGauche;
+
+void chenillesInit(void){
+	// Initialisation de la chenille droite branchée IA sur C.0 et IB sur C.1
+	chenilleDroite.IA_Gpio = GPIOC;
+	chenilleDroite.IA_Pin = 0;
+	chenilleDroite.IB_Gpio = GPIOC;
+	chenilleDroite.IB_Pin = 1;
+	chenilleInit(&chenilleDroite);
+
+	// Initialisation de la chenille gauche branchée IA sur B.8 et IB sur B.9
+	chenilleGauche.IA_Gpio = GPIOB;
+	chenilleGauche.IA_Pin = 8;
+	chenilleGauche.IB_Gpio = GPIOB;
+	chenilleGauche.IB_Pin = 9;
+	chenilleInit(&chenilleGauche);
+}
+
 void chenilleInit(Chenille_Struct_Def * chenille){
 	// Initialisation du GPIO concerné par l'IA de la chenille
 	GPIO_Struct_TypeDef gpioIA;
@@ -19,21 +38,52 @@ void chenilleInit(Chenille_Struct_Def * chenille){
 }
 
 
-void chenilleAvancer(Chenille_Struct_Def * chenille){
-	// Pour faire avancer une chenille, on envoit 1 dans IA
-	GPIO_Set(chenille->IA_Gpio, chenille->IA_Pin);
+void chenilleAvancer(char cote){
+	// Pour faire avancer une chenille, on envoie 1 dans IA
+	if (cote == 'g'){
+		GPIO_Set(chenilleGauche.IA_Gpio, chenilleGauche.IA_Pin);
+	}
+	if (cote == 'd'){
+		GPIO_Set(chenilleDroite.IA_Gpio, chenilleDroite.IA_Pin);
+	}
+	if (cote == 'b'){
+		GPIO_Set(chenilleDroite.IA_Gpio, chenilleDroite.IA_Pin);
+		GPIO_Set(chenilleGauche.IA_Gpio, chenilleGauche.IA_Pin);
+	} 
 }
 
-void chenilleReculer(Chenille_Struct_Def * chenille){
-	// Pour faire avancer une chenille, on envoit 1 dans IB
-	GPIO_Set(chenille->IB_Gpio, chenille->IB_Pin);
+
+
+void chenilleReculer(char cote){
+	// Pour faire reculer une chenille, on envoie 1 dans IB
+	if (cote == 'g'){
+		GPIO_Set(chenilleGauche.IB_Gpio, chenilleGauche.IB_Pin);
+	}
+	if (cote == 'd'){
+		GPIO_Set(chenilleDroite.IB_Gpio, chenilleDroite.IB_Pin);
+	}
+	if (cote == 'b'){
+		GPIO_Set(chenilleDroite.IB_Gpio, chenilleDroite.IB_Pin);
+		GPIO_Set(chenilleGauche.IB_Gpio, chenilleGauche.IB_Pin);
+	}
 }
 
-void chenilleStop(Chenille_Struct_Def * chenille){
-	// Pour faire arrêter une chenille, on reset IA (si la chenille avancait)
-	GPIO_Reset(chenille->IA_Gpio, chenille->IA_Pin);
-	// et IB (si la chenille reculait)
-	GPIO_Reset(chenille->IB_Gpio, chenille->IB_Pin);
+void chenilleStop(char cote){
+	// Pour faire arrêter une chenille, on reset IA (si la chenille avancait) et IB (si la chenille reculait)
+	if (cote == 'g'){
+		GPIO_Reset(chenilleGauche.IB_Gpio, chenilleGauche.IB_Pin);
+		GPIO_Reset(chenilleGauche.IA_Gpio, chenilleGauche.IA_Pin);
+	}
+	if (cote == 'd'){
+		GPIO_Reset(chenilleDroite.IB_Gpio, chenilleDroite.IB_Pin);
+		GPIO_Reset(chenilleDroite.IA_Gpio, chenilleDroite.IA_Pin);
+	}
+	if (cote == 'b'){
+		GPIO_Reset(chenilleGauche.IB_Gpio, chenilleGauche.IB_Pin);
+		GPIO_Reset(chenilleGauche.IA_Gpio, chenilleGauche.IA_Pin);
+		GPIO_Reset(chenilleDroite.IB_Gpio, chenilleDroite.IB_Pin);
+		GPIO_Reset(chenilleDroite.IA_Gpio, chenilleDroite.IA_Pin);
+	}
 }
 
 
