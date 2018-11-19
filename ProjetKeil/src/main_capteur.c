@@ -24,7 +24,7 @@ void TIM3_IRQHandler(){
 	
 }
 
-int main_capteur (void)
+int main (void)
 {
 	
 	// Le timer 3 est utilisé pour traiter la fonction principale

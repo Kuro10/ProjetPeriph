@@ -2,24 +2,16 @@
 #include "stm32f10x.h" 
 #include "timer.h"
 #include "GPIO.h"
-#include "Moteur.h"
-/*
-=======
 #include "MoteurBras.h"
 #include "MoteurCapot.h"
->>>>>>> 53fe7d4214f4d62332aa822f5da2f6e539baea18
+#include "Moteur.h"
 
 int open=0;
 GPIO_Struct_TypeDef button;
 
-/* Fichier de la couche "application" 
+/* Fichier de la couche "application" */
 void Ma_Fonction_IT ( void )
 {
-<<<<<<< HEAD
-/* Le code à exécuter pendant l’interruption 
-
-	// A VERIFIER : CHOISIR DES VALEURS ADAPTEES POUR BIEN FONCTIONNER 
-=======
 /* Le code à exécuter pendant l’interruption */
 	
 	// si le capot est ferme, et button = 0, ouvrir le capot, puis tourner le bras
@@ -39,11 +31,11 @@ void Ma_Fonction_IT ( void )
 }
 
 
-/* Fichier de la couche pilote 
-void (* pFnc) (void) ; /* déclaration d’un pointeur de fonction 
+/* Fichier de la couche pilote */
+void (* pFnc) (void) ; /* déclaration d’un pointeur de fonction */
 
 void Init_periph (void (* ptrFonction) (void)) {
-	pFnc = ptrFonction; /* affectation du pointeur 
+	pFnc = ptrFonction; /* affectation du pointeur */
 }
 
 //mis en place d'une routine de traitement de l'interruprion
@@ -51,7 +43,7 @@ void TIM2_IRQHandler (void){
 	if (pFnc != 0)
 		(*pFnc) (); /* appel indirect de la fonction */
 }
-/*
+
 int main (void)
 {	
 
@@ -85,8 +77,8 @@ int main (void)
 	ActiverBras(TIM2,2);
 	
 	//Pour l'instant, fixons la duree de l'impulsion a 144 (10%)
-	//PWM_Set_Valeur(TIM2,1,0);
-	//PWM_Set_Valeur(TIM2,2,0);
+	PWM_Set_Valeur(TIM2,1,0);
+	PWM_Set_Valeur(TIM2,2,0);
 	
 	
 	//Activer counter / Lancer le timer
@@ -100,4 +92,3 @@ int main (void)
     }
 
 }
-*/

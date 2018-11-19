@@ -4,16 +4,14 @@
 
 
 void chenilleInit(Chenille_Struct_Def * chenille){
-	
-	GPIO_Struct_TypeDef gpioIA;
-	GPIO_Struct_TypeDef gpioIB;
-	
 	// Initialisation du GPIO concerné par l'IA de la chenille
+	GPIO_Struct_TypeDef gpioIA;
 	gpioIA.GPIO = chenille->IA_Gpio;
 	gpioIA.GPIO_Pin = chenille->IA_Pin;
 	gpioIA.GPIO_Techno = Out_Ppull;
 	GPIO_Init(&gpioIA);
 	// Initialisation du GPIO concerné par l'IB de la chenille
+	GPIO_Struct_TypeDef gpioIB;
 	gpioIB.GPIO = chenille->IB_Gpio;
 	gpioIB.GPIO_Pin = chenille->IB_Pin;
 	gpioIB.GPIO_Techno = Out_Ppull;
